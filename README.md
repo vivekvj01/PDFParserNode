@@ -1,10 +1,5 @@
-# README
+# Heroku AppLink Node.js App Template
 
-A repo containing all the basic file templates and general guidelines for any open source project at Salesforce.
+The Heroku AppLink Node.js app template is an app that employs the [Fastify](https://fastify.dev/) web framework.
 
-## Usage
-
-It's required that all files must be placed at the top level of your repository.
-
-> **NOTE** Your README should contain detailed, useful information about the project!
-
+See [Getting Started with Heroku AppLink](https://devcenter.heroku.com/articles/getting-started-heroku-applink).
