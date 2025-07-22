@@ -2,87 +2,44 @@ openapi: 3.0.0
 info:
   version: 1.0.0
   title: Heroku AppLink Node.js App Template
-  description: Sample Heroku App exposing APIs in Node.js with Fastify to connected Salesforce and Data Cloud orgs.
+info:
+  title: 'PDF Parser using Flows'
+  version: '0.1'
 servers:
   - url: http://127.0.0.1:3000
+x-sfdc-herokufunctions:
+  - name: PDF Content Parser
+    description: This API allows agents to parse PDF files from Salesforce ContentVersion.
+    classification:
+      scope: Your job is to assist users in getting information from the pdf files and provide the information to the user.
+      instructions:
+        - if the user asks for the information from the pdf or the case attachement, you should parse the pdf file from the content version id and provide the information to the user.
+        - if the user asks for the warranty information, you should parse the pdf file from the content version id  and provide the information to the user.
+        - the warranty information is the attached files in on the case
+
 paths:
-  /accounts:
+  /parseattachment:
     get:
-      operationId: GetAccounts
-      description: Returns a list of Accounts
-      x-sfdc:
-        heroku:
-          authorization:
-            connectedApp: 'MyAppLinkConnectedApp'
-            permissionSet: 'MyAppLinkPermSet'
+      tags:
+        - "Agentforce Action"
+      summary: 'Parse PDF from Salesforce ContentVersion to provide information for warranty and insurance'
+      operationId: parseattachment
+      description: 'Retrieves and parses PDF content from Salesforce using ContentVersion ID'
+      x-agent-action:
+        isDisplayable: true
+        isPii: false
+        isUserInput: false
+        publishAsAgentAction: true
+      x-heroku:
+        authorization:
+          connectedApp: 'MyAppLinkConnectedApp'
+      parameters:
+        - in: query
+          name: content_version_id
+          schema:
+            type: string
+          description: Salesforce ContentVersion ID of the attached PDF file on the case
       responses:
         '200':
-          description: Successfully returned a list of Accounts
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    name:
-                      type: string
-  /unitofwork:
-    post:
-      operationId: UnitOfWork
-      description:
-        Receives a payload containing Account, Contact, and Case details and uses the
-        Unit of Work pattern to assign the corresponding values to to its Record
-        while maintaining the relationships. It then commits the unit of work and
-        returns the Record Id's for each object.
-      x-sfdc:
-        heroku:
-          authorization:
-            connectedApp: 'MyAppLinkConnectedApp'
-            permissionSet: 'MyAppLinkPermSet'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                accountName:
-                  type: string
-                lastName:
-                  type: string
-                subject:
-                  type: string
-                callbackUrl:
-                  type: string
-      responses:
-        '201':
-          description: Received UnitOfWork API request
-      callbacks:
-        unitOfWorkResponse:
-          '{$request.body#/callbackUrl}':
-            post:
-              description: Response from /unitofwork API
-              operationId: unitOfWorkResponseCallback
-              requestBody:
-                content:
-                  application/json:
-                    schema:
-                      type: object
-                      properties:
-                        accountId:
-                          type: string
-                        contactId:
-                          type: string
-                        cases:
-                          type: object
-                          properties:
-                            serviceCaseId:
-                              type: string
-                            followupCaseId:
-                              type: string
-              responses:   # Expected responses to the callback message
-                '200':
-                  description: Your server returns this code if it accepts the callback
+          description: success
+
