@@ -13,10 +13,10 @@ export default async function (fastify, _opts) {
     const { context, logger } = request.sdk;
     const { org } = context;
     logger.info(`sfContext: ${JSON.stringify(context)}`);
-    logger.info(`access token is ${context.accessToken}`);
+    logger.info(`access token is ${org.accessToken}`);
     const versionDataUrl = `/services/data/v${org.apiVersion}/sobjects/ContentVersion/${request.query.content_version_id}/VersionData`;
     const finalUrl = org.domainUrl + versionDataUrl;
-    const result = await fetchPdfData(finalUrl, context.accessToken);
+    const result = await fetchPdfData(finalUrl, org.accessToken);
     return {
       data: result,
     };
