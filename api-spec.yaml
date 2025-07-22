@@ -16,8 +16,8 @@ paths:
       x-sfdc:
         heroku:
           authorization:
-            connectedApp: 'MyAppLinkConnectedApp'
-            permissionSet: 'MyAppLinkPermSet'
+            connectedApp: 'MydemoAppLinkConJuly22'
+            permissionSet: 'MydemoAppLinkJuly22'
       parameters:
         - in: query
           name: content_version_id
