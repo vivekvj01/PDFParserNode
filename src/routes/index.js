@@ -1,18 +1,19 @@
-"use strict";
-import axios from "axios";
-import pdf from "pdf-parse";
+'use strict';
+import axios from 'axios';
+import pdf from 'pdf-parse';
 
-export default async function (fastify, opts) {
+export default async function (fastify, _opts) {
   /**
    *
    * @param request
    * @param reply
    * @returns {Promise<void>}
    */
-  fastify.get("/parseattachment", async function (request, reply) {
+  fastify.get('/parseattachment', async function (request, _reply) {
     const { event, context, logger } = request.sdk;
     const { org } = context;
 
+    logger.info(`GET /accounts: ${JSON.stringify(event.data || {})}`);
     const versionDataUrl = `/services/data/v${org.apiVersion}/sobjects/ContentVersion/${request.query.contentVersionId}/VersionData`;
     const finalUrl = org.domainUrl + versionDataUrl;
     const result = await fetchPdfData(finalUrl, org.dataApi.accessToken);
@@ -25,7 +26,7 @@ export default async function (fastify, opts) {
     try {
       // Fetch the ArrayBuffer using axios
       const response = await axios.get(orgBaseUrl, {
-        responseType: "arraybuffer",
+        responseType: 'arraybuffer',
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -42,6 +43,6 @@ export default async function (fastify, opts) {
 
   fastify.setErrorHandler(function (error, request, reply) {
     request.log.error(error);
-    reply.status(500).send({ code: "500", message: error.message });
+    reply.status(500).send({ code: '500', message: error.message });
   });
-};
+}

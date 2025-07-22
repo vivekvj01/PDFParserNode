@@ -1,7 +1,7 @@
 {
   "name": "Heroku AppLink Node.js App Template",
-  "description": "Heroku AppLink Node.js App Template with Fastify",
-  "repository": "https://github.com/heroku-reference-apps/applink-getting-started-nodejs",
+  "description": "Heroku AppLink Node.js App PDF parser with Fastify",
+  "repository": "https://github.com/vivekvj01/PDFParserNode",
   "keywords": [
     "node",
     "fastify",
