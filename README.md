@@ -1,8 +1,8 @@
-# Heroku AppLink Node.js App Template
+# Heroku AppLink Node.js Pdf parser sample
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy?template=https://github.com/heroku-reference-apps/applink-getting-started-nodejs)
 
-The Heroku AppLink Node.js app template is a [Fastify](https://fastify.dev/) web application that demonstrates how to build APIs for Salesforce integration using Heroku AppLink. This template includes authentication, authorization, and API specifications for seamless integration with Salesforce, Data Cloud, and Agentforce.
+The Heroku AppLink Node.js app template is a [Fastify](https://fastify.dev/) web application that demonstrates how to build APIs for Salesforce integration using Heroku AppLink. This example shows how to parse content documents
 
 ## Table of Contents
 
