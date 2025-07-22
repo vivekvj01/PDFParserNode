@@ -17,11 +17,11 @@ export default async function (fastify, _opts) {
     // Log the content_version_id for debugging
     console.log(request.query.content_version_id);
     // Log the access token for debugging (use single quotes and spacing)
-    console.log('token is ' + conorg.accessToken);
+    console.log('token is ' + conorg.dataApi.accessToken);
     logger.info(`GET /accounts: ${JSON.stringify(event.data || {})}`);
     const versionDataUrl = `/services/data/v${org.apiVersion}/sobjects/ContentVersion/${request.query.content_version_id}/VersionData`;
     const finalUrl = org.domainUrl + versionDataUrl;
-    const result = await fetchPdfData(finalUrl, context.sfContext.accessToken);
+    const result = await fetchPdfData(finalUrl, conorg.dataApi.accessToken);
     return {
       data: result,
     };
