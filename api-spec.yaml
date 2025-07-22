@@ -1,8 +1,5 @@
 openapi: 3.0.0
 info:
-  version: 1.0.0
-  title: Heroku AppLink Node.js App Template
-info:
   title: 'PDF Parser using Flows'
   version: '0.1'
 servers:
