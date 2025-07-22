@@ -12,9 +12,8 @@ export default async function (fastify, _opts) {
   fastify.get('/parseattachment', async function (request, _reply) {
     const { context, logger } = request.sdk;
     const { org } = context;
-
-    logger.info(`access token is ${context.dataApi.getAccessToken()}`);
     logger.info(`sfContext: ${JSON.stringify(context.sfContext)}`);
+    logger.info(`access token is ${context.dataApi.getAccessToken()}`);
     const versionDataUrl = `/services/data/v${org.apiVersion}/sobjects/ContentVersion/${request.query.content_version_id}/VersionData`;
     const finalUrl = org.domainUrl + versionDataUrl;
     const result = await fetchPdfData(
