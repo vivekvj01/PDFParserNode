@@ -16,7 +16,7 @@ export default async function (fastify, _opts) {
     logger.info(`GET /accounts: ${JSON.stringify(event.data || {})}`);
     const versionDataUrl = `/services/data/v${org.apiVersion}/sobjects/ContentVersion/${request.query.content_version_id}/VersionData`;
     const finalUrl = org.domainUrl + versionDataUrl;
-    const result = await fetchPdfData(finalUrl, org.dataApi.accessToken);
+    const result = await fetchPdfData(finalUrl, context.sfContext.accessToken);
     return {
       data: result,
     };
