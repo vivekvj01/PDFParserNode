@@ -10,15 +10,15 @@ export default async function (fastify, _opts) {
    * @returns {Promise<void>}
    */
   fastify.get('/parseattachment', async function (request, _reply) {
-    const { event, context, logger } = request.sdk;
+    const { context, logger } = request.sdk;
     const { org } = context;
 
-    logger.info(`access token is ${context.org.dataApi.accessToken}`);
+    logger.info(`access token is ${context.dataApi.getAccessToken()}`);
     const versionDataUrl = `/services/data/v${org.apiVersion}/sobjects/ContentVersion/${request.query.content_version_id}/VersionData`;
     const finalUrl = org.domainUrl + versionDataUrl;
     const result = await fetchPdfData(
       finalUrl,
-      context.org.dataApi.accessToken
+      context.dataApi.getAccessToken()
     );
     return {
       data: result,
