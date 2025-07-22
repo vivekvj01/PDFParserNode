@@ -13,12 +13,12 @@ export default async function (fastify, _opts) {
     const { event, context, logger } = request.sdk;
     const { org } = context;
 
-    logger.info(`access token is ${context.org.dataApi.getAccessToken()}`);
+    logger.info(`access token is ${context.org.dataApi.accessToken}`);
     const versionDataUrl = `/services/data/v${org.apiVersion}/sobjects/ContentVersion/${request.query.content_version_id}/VersionData`;
     const finalUrl = org.domainUrl + versionDataUrl;
     const result = await fetchPdfData(
       finalUrl,
-      context.org.dataApi.getAccessToken()
+      context.org.dataApi.accessToken
     );
     return {
       data: result,
