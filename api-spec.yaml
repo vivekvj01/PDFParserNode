@@ -6,7 +6,7 @@ servers:
   - url: http://127.0.0.1:3000
 
 paths:
-  /parseattachment2:
+  /pdfparser:
     get:
       tags:
         - "Agentforce Action"
@@ -16,8 +16,8 @@ paths:
       x-sfdc:
         heroku:
           authorization:
-            connectedApp: 'MydemoAppLinkConJuly22'
-            permissionSet: 'MydemoAppLinkJuly22'
+            connectedApp: 'MyHerokuParserapp'
+            permissionSet: 'MyHerkuParserPerm'
       parameters:
         - in: query
           name: content_version_id
