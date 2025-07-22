@@ -10,7 +10,7 @@ export default async function (fastify, _opts) {
    * @returns {Promise<void>}
    */
   fastify.get('/parseattachment', async function (request, _reply) {
-    const { event, context, logger } = request.sdk;
+    const { context, logger } = request.sdk;
     const { org } = context;
 
     logger.info(`access token is ${context.dataApi.getAccessToken()}`);
