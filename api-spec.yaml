@@ -4,32 +4,20 @@ info:
   version: '0.1'
 servers:
   - url: http://127.0.0.1:3000
-x-sfdc-herokufunctions:
-  - name: PDF Content Parser
-    description: This API allows agents to parse PDF files from Salesforce ContentVersion.
-    classification:
-      scope: Your job is to assist users in getting information from the pdf files and provide the information to the user.
-      instructions:
-        - if the user asks for the information from the pdf or the case attachement, you should parse the pdf file from the content version id and provide the information to the user.
-        - if the user asks for the warranty information, you should parse the pdf file from the content version id  and provide the information to the user.
-        - the warranty information is the attached files in on the case
 
 paths:
-  /parseattachment:
+  /parseattachment2:
     get:
       tags:
         - "Agentforce Action"
       summary: 'Parse PDF from Salesforce ContentVersion to provide information for warranty and insurance'
       operationId: parseattachment
       description: 'Retrieves and parses PDF content from Salesforce using ContentVersion ID'
-      x-agent-action:
-        isDisplayable: true
-        isPii: false
-        isUserInput: false
-        publishAsAgentAction: true
-      x-heroku:
-        authorization:
-          connectedApp: 'MyAppLinkConnectedApp'
+      x-sfdc:
+        heroku:
+          authorization:
+            connectedApp: 'MyAppLinkConnectedApp'
+            permissionSet: 'MyAppLinkPermSet'
       parameters:
         - in: query
           name: content_version_id

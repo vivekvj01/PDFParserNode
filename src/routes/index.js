@@ -9,7 +9,7 @@ export default async function (fastify, _opts) {
    * @param reply
    * @returns {Promise<void>}
    */
-  fastify.get('/parseattachment', async function (request, _reply) {
+  fastify.get('/parseattachment2', async function (request, _reply) {
     const { context, logger } = request.sdk;
     const { org } = context;
     logger.info(`sfContext: ${JSON.stringify(context)}`);
