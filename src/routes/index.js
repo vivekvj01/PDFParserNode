@@ -1,8 +1,8 @@
 "use strict";
-const axios = require("axios");
-const pdf = require("pdf-parse");
+import axios from "axios";
+import pdf from "pdf-parse";
 
-module.exports = async function (fastify, opts) {
+export default async function (fastify, opts) {
   /**
    *
    * @param request
